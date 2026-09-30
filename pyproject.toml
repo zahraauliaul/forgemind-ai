@@ -1,0 +1,38 @@
+[project]
+name = "forgemind-ai"
+version = "0.1.0"
+description = "Manufacturing Knowledge & Operations Intelligence Assistant"
+
+readme = "README.md"
+
+requires-python = ">=3.12,<3.14"
+
+license = { file = "LICENSE" }
+
+authors = [
+    { name = "z" }
+]
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic-settings"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "httpx"
+]
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "backend"
+]
+
+testpaths = [
+    "backend/tests"
+]
