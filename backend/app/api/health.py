@@ -8,12 +8,12 @@ from app.schemas.health import HealthResponse
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter()
+router = APIRouter(tags=["Health"])
 
 @router.get("/health", response_model=HealthResponse)
 def health_check(
     app_settings: Settings = Depends(get_settings)
-):
+) -> HealthResponse:
     logger.info("Health check requested")
 
     return HealthResponse(
