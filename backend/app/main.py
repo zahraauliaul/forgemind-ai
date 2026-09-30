@@ -3,8 +3,9 @@ import logging
 from fastapi import FastAPI
 
 from app.config import settings
-from app.logging_config import configure_logging
 from app.schemas.health import HealthResponse
+from app.logging_config import configure_logging
+from app.api.health import router as health_router
 
 configure_logging()
 
@@ -19,10 +20,4 @@ app = FastAPI(
     version="0.1.0",
 )
 
-@app.get("/health", response_model=HealthResponse)
-def health_check():
-    return HealthResponse(
-        status="ok",
-        service=settings.app_name,
-        environment=settings.environment,
-    )
+app.include_router(health_router)
